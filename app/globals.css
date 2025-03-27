@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 142 71% 45%;
+  --primary-foreground: 144 100% 10%;
+  --secondary: 240 4% 16%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 4% 16%;
+  --muted-foreground: 240 5% 64.9%;
+  --accent: 240 4% 16%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 4% 16%;
+  --input: 240 4% 16%;
+  --ring: 142 71% 45%;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 142 71% 45%;
+  --primary-foreground: 144 100% 10%;
+  --secondary: 240 4% 16%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 4% 16%;
+  --muted-foreground: 240 5% 64.9%;
+  --accent: 240 4% 16%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 4% 16%;
+  --input: 240 4% 16%;
+  --ring: 142 71% 45%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Element swap animation for sorting visualizations */
+@keyframes swap-right {
+  0% {
+    transform: translateX(0);
+  }
+  40% {
+    transform: translateX(10px) translateY(-15px);
+  }
+  60% {
+    transform: translateX(calc(var(--swap-distance) - 10px)) translateY(-15px);
+  }
+  100% {
+    transform: translateX(var(--swap-distance));
+  }
+}
+
+@keyframes swap-left {
+  0% {
+    transform: translateX(0);
+  }
+  40% {
+    transform: translateX(-10px) translateY(-15px);
+  }
+  60% {
+    transform: translateX(calc(var(--swap-distance) + 10px)) translateY(-15px);
+  }
+  100% {
+    transform: translateX(var(--swap-distance));
+  }
+}
+
+.swap-right {
+  animation: swap-right 0.5s ease-in-out;
+}
+
+.swap-left {
+  animation: swap-left 0.5s ease-in-out;
+}
+
+.algorithm-card {
+  @apply relative overflow-hidden transition-all duration-500 transform hover:scale-105;
+}
+
+.algorithm-card::before {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 opacity-0 transition-opacity duration-300;
+}
+
+.algorithm-card:hover::before {
+  @apply opacity-100;
+}
+
+.visualization-container {
+  @apply min-h-[400px] w-full bg-secondary/30 rounded-lg p-4;
+}
+
+.array-element {
+  @apply flex items-center justify-center bg-primary text-primary-foreground rounded-md transition-all duration-300;
+}
+
+.array-element.comparing {
+  @apply bg-yellow-500;
+}
+
+.array-element.sorted {
+  @apply bg-green-500;
+}
+
+.array-element.current {
+  @apply bg-blue-500;
+}
