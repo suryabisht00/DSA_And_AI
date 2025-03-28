@@ -47,7 +47,7 @@ export default function Home() {
     }
   ];
 
-  const categories = [...new Set(algorithms.map(algo => algo.category))];
+  const categories = Array.from(new Set(algorithms.map(algo => algo.category)));
 
   if (!mounted) {
     return null;
